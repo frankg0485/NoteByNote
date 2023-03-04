@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var notes: String = ""
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            VideoPicker()
+            TextField("Your notes here", text: $notes)
+                .border(Color.black)
+                .padding(.all)
         }
         .padding()
     }
