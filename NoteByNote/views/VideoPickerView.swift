@@ -1,24 +1,18 @@
 //
-//  VideoPicker.swift
+//  VideoPickerView.swift
 //  NoteByNote
 //
-//  Created by Frank Gao on 3/3/23.
+//  Created by Frank Gao on 3/4/23.
 //
 
 import SwiftUI
 import PhotosUI
-import AVKit
 
-struct VideoPicker: View {
+struct VideoPickerView: View {
+    @Binding var movie: Movie?
     @State private var videoSelection: PhotosPickerItem?
-    @State private var movie: Movie?
     
     var body: some View {
-        if let movie {
-            VideoPlayer(player: AVPlayer(url: movie.url))
-                                .scaledToFit()
-                                .frame(width: 300, height: 300)
-        }
         PhotosPicker(selection: $videoSelection,
                      matching: .videos,
                      photoLibrary: .shared()) {
@@ -34,8 +28,8 @@ struct VideoPicker: View {
     }
 }
 
-struct VideoPicker_Previews: PreviewProvider {
+struct VideoPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        VideoPicker()
+        VideoPickerView(movie: .constant(Movie(url: URL(string: "file:///Users/fgao/Downloads/IMG_0909.mov")!)))
     }
 }

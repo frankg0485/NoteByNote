@@ -7,22 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C203D74029B3FCB100CF7DD5 /* VideoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C203D73F29B3FCB100CF7DD5 /* VideoPickerView.swift */; };
 		C2E78BA629B30349004E6751 /* NoteByNoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */; };
 		C2E78BA829B30349004E6751 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA729B30349004E6751 /* ContentView.swift */; };
 		C2E78BAA29B3034A004E6751 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E78BA929B3034A004E6751 /* Assets.xcassets */; };
 		C2E78BAD29B3034A004E6751 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E78BAC29B3034A004E6751 /* Preview Assets.xcassets */; };
-		C2E78BB429B303CD004E6751 /* VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BB329B303CD004E6751 /* VideoPicker.swift */; };
+		C2E78BB429B303CD004E6751 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BB329B303CD004E6751 /* VideoView.swift */; };
 		C2E78BB629B30F25004E6751 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BB529B30F25004E6751 /* Movie.swift */; };
+		C2E78BB829B313F1004E6751 /* AudioSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BB729B313F1004E6751 /* AudioSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C203D73F29B3FCB100CF7DD5 /* VideoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPickerView.swift; sourceTree = "<group>"; };
 		C2E78BA229B30349004E6751 /* NoteByNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteByNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteByNoteApp.swift; sourceTree = "<group>"; };
 		C2E78BA729B30349004E6751 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C2E78BA929B3034A004E6751 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2E78BAC29B3034A004E6751 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C2E78BB329B303CD004E6751 /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPicker.swift; sourceTree = "<group>"; };
+		C2E78BB329B303CD004E6751 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		C2E78BB529B30F25004E6751 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		C2E78BB729B313F1004E6751 /* AudioSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +40,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C203D73D29B3FC2300CF7DD5 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				C2E78BA729B30349004E6751 /* ContentView.swift */,
+				C2E78BB329B303CD004E6751 /* VideoView.swift */,
+				C203D73F29B3FCB100CF7DD5 /* VideoPickerView.swift */,
+				C2E78BB729B313F1004E6751 /* AudioSlider.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		C203D73E29B3FC2900CF7DD5 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C2E78BB529B30F25004E6751 /* Movie.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
 		C2E78B9929B30349004E6751 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */,
-				C2E78BA729B30349004E6751 /* ContentView.swift */,
-				C2E78BB329B303CD004E6751 /* VideoPicker.swift */,
-				C2E78BB529B30F25004E6751 /* Movie.swift */,
+				C203D73D29B3FC2300CF7DD5 /* views */,
+				C203D73E29B3FC2900CF7DD5 /* helpers */,
 				C2E78BA929B3034A004E6751 /* Assets.xcassets */,
 				C2E78BAB29B3034A004E6751 /* Preview Content */,
 			);
@@ -143,9 +165,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2E78BB429B303CD004E6751 /* VideoPicker.swift in Sources */,
+				C203D74029B3FCB100CF7DD5 /* VideoPickerView.swift in Sources */,
+				C2E78BB429B303CD004E6751 /* VideoView.swift in Sources */,
 				C2E78BA829B30349004E6751 /* ContentView.swift in Sources */,
 				C2E78BB629B30F25004E6751 /* Movie.swift in Sources */,
+				C2E78BB829B313F1004E6751 /* AudioSlider.swift in Sources */,
 				C2E78BA629B30349004E6751 /* NoteByNoteApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

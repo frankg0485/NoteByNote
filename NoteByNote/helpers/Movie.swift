@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Movie: Transferable {
+struct Movie: Transferable, Equatable {
     let url: URL
 
     static var transferRepresentation: some TransferRepresentation {

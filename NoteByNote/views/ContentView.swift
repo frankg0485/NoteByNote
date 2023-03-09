@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var notes: String = ""
     var body: some View {
         VStack {
-            VideoPicker()
+            VideoView()
             TextField("Your notes here", text: $notes)
                 .border(Color.black)
                 .padding(.all)
