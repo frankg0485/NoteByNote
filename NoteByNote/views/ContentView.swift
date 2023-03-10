@@ -9,14 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var notes: String = ""
+    @FocusState private var textEditorShouldFocus: Bool
+    
     var body: some View {
-        VStack {
-            VideoView()
-            TextField("Your notes here", text: $notes)
-                .border(Color.black)
-                .padding(.all)
+        GeometryReader { geometry in
+            VStack {
+                VideoView()
+                NotesView(notes: $notes, editorShouldFocus: $textEditorShouldFocus)
+                .frame(height: geometry.size.height * 0.33)
+            }
+            .padding()
+            .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
         }
-        .padding()
+        .contentShape(Rectangle())
+        .onTapGesture {
+            textEditorShouldFocus = false
+        }
     }
 }
 

@@ -19,7 +19,7 @@ struct VideoView: View {
     @State private var timeObserver: Any?
 
     private func addTimeObserver() {
-        let interval = CMTime(seconds: 0.2, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        let interval = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player!.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { time in
             // only update the slider value if is not currently being dragged
             if !sliderIsBeingDragged {
@@ -28,6 +28,11 @@ struct VideoView: View {
                 self.sliderValue = currentSeconds / durationSeconds
             }
         })
+    }
+    
+    private func updatePlayer(sliderVal: Float) {
+        let newTime = CMTimeMakeWithSeconds(Double(sliderVal) * (player!.currentItem?.duration.seconds)!, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        player!.currentItem?.seek(to: newTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: nil)
     }
     
     var body: some View {
@@ -46,15 +51,14 @@ struct VideoView: View {
                 }
                 player?.replaceCurrentItem(with: AVPlayerItem(url: movie!.url))
                 movie?.movieChanged = false
-                addTimeObserver()
+                if (timeObserver == nil) { addTimeObserver() }
             }
         
         if (movie != nil) {
             AudioSlider(value: $sliderValue, dragging: $sliderIsBeingDragged)
                 .onChange(of: sliderValue) { newValue in
                     if (sliderIsBeingDragged) {
-                        let newTime = CMTimeMakeWithSeconds(Double(newValue) * (player!.currentItem?.duration.seconds)!, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-                        player!.currentItem?.seek(to: newTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: nil)
+                        updatePlayer(sliderVal: newValue)
                     }
                 }
         }

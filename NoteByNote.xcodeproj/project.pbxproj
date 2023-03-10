@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C203D74029B3FCB100CF7DD5 /* VideoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C203D73F29B3FCB100CF7DD5 /* VideoPickerView.swift */; };
+		C2B0061929BAEF2800517E8D /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0061829BAEF2800517E8D /* NotesView.swift */; };
 		C2E78BA629B30349004E6751 /* NoteByNoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */; };
 		C2E78BA829B30349004E6751 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA729B30349004E6751 /* ContentView.swift */; };
 		C2E78BAA29B3034A004E6751 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E78BA929B3034A004E6751 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		C203D73F29B3FCB100CF7DD5 /* VideoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPickerView.swift; sourceTree = "<group>"; };
+		C2B0061829BAEF2800517E8D /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		C2E78BA229B30349004E6751 /* NoteByNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteByNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteByNoteApp.swift; sourceTree = "<group>"; };
 		C2E78BA729B30349004E6751 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				C2E78BA729B30349004E6751 /* ContentView.swift */,
+				C2B0061829BAEF2800517E8D /* NotesView.swift */,
 				C2E78BB329B303CD004E6751 /* VideoView.swift */,
 				C203D73F29B3FCB100CF7DD5 /* VideoPickerView.swift */,
 				C2E78BB729B313F1004E6751 /* AudioSlider.swift */,
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B0061929BAEF2800517E8D /* NotesView.swift in Sources */,
 				C203D74029B3FCB100CF7DD5 /* VideoPickerView.swift in Sources */,
 				C2E78BB429B303CD004E6751 /* VideoView.swift in Sources */,
 				C2E78BA829B30349004E6751 /* ContentView.swift in Sources */,
