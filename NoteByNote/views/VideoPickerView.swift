@@ -30,6 +30,6 @@ struct VideoPickerView: View {
 
 struct VideoPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        VideoPickerView(movie: .constant(Movie(url: URL(string: "file:///Users/fgao/Downloads/IMG_0909.mov")!)))
+        VideoPickerView(movie: .constant(Movie(url: URL(string: "file:///Users/fgao/Downloads/IMG_0909.mov")!, movieChanged: true)))
     }
 }

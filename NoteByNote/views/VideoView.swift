@@ -11,19 +11,22 @@ import AVKit
 
 struct VideoView: View {
     @State private var movie: Movie?
-    @State private var sliderValue: Float = 5.0
+    @State private var sliderValue: Float = 0.0
     @State private var sliderIsBeingDragged: Bool = false
     @State private var player: AVPlayer?
     @State private var playerTime: CMTime?
     
     @State private var timeObserver: Any?
-    
+
     private func addTimeObserver() {
         let interval = CMTime(seconds: 0.2, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player!.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { time in
-            let currentSeconds = Float(CMTimeGetSeconds(time))
-            let durationSeconds = Float(CMTimeGetSeconds(player!.currentItem?.duration ?? CMTime.zero))
-            self.sliderValue = currentSeconds / durationSeconds
+            // only update the slider value if is not currently being dragged
+            if !sliderIsBeingDragged {
+                let currentSeconds = Float(CMTimeGetSeconds(time))
+                let durationSeconds = Float(CMTimeGetSeconds(player!.currentItem?.duration ?? CMTime.zero))
+                self.sliderValue = currentSeconds / durationSeconds
+            }
         })
     }
     
@@ -37,8 +40,12 @@ struct VideoView: View {
         }
         
         VideoPickerView(movie: $movie)
-            .onChange(of: movie) { newMovie in
-                player = AVPlayer(url: newMovie!.url)
+            .onChange(of: movie?.movieChanged) { changed in
+                if player == nil {
+                    player = AVPlayer()
+                }
+                player?.replaceCurrentItem(with: AVPlayerItem(url: movie!.url))
+                movie?.movieChanged = false
                 addTimeObserver()
             }
         
@@ -46,14 +53,8 @@ struct VideoView: View {
             AudioSlider(value: $sliderValue, dragging: $sliderIsBeingDragged)
                 .onChange(of: sliderValue) { newValue in
                     if (sliderIsBeingDragged) {
-                        if (timeObserver != nil) {
-                            player!.removeTimeObserver(timeObserver!)
-                            timeObserver = nil
-                        }
-                        let newTime = CMTimeMakeWithSeconds(Double(newValue) * (player!.currentItem?.duration.seconds)!, preferredTimescale: 1)
-                        player!.currentItem?.seek(to: newTime, completionHandler: nil)
-                    } else {
-                        addTimeObserver()
+                        let newTime = CMTimeMakeWithSeconds(Double(newValue) * (player!.currentItem?.duration.seconds)!, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+                        player!.currentItem?.seek(to: newTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: nil)
                     }
                 }
         }
