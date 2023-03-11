@@ -12,14 +12,14 @@ struct ContentView: View {
     @FocusState private var textEditorShouldFocus: Bool
     
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { proxy in
             VStack {
                 VideoView()
                 NotesView(notes: $notes, editorShouldFocus: $textEditorShouldFocus)
-                .frame(height: geometry.size.height * 0.33)
+                .frame(height: proxy.size.height * 0.33)
             }
             .padding()
-            .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+            .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height)
         }
         .contentShape(Rectangle())
         .onTapGesture {

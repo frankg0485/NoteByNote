@@ -11,10 +11,13 @@ import AVKit
 
 struct VideoView: View {
     @State private var movie: Movie?
+    
     @State private var sliderValue: Float = 0.0
     @State private var sliderIsBeingDragged: Bool = false
+    
     @State private var player: AVPlayer?
     @State private var playerTime: CMTime?
+    @State private var duration: Double = 0
     
     @State private var timeObserver: Any?
 
@@ -24,43 +27,54 @@ struct VideoView: View {
             // only update the slider value if is not currently being dragged
             if !sliderIsBeingDragged {
                 let currentSeconds = Float(CMTimeGetSeconds(time))
-                let durationSeconds = Float(CMTimeGetSeconds(player!.currentItem?.duration ?? CMTime.zero))
-                self.sliderValue = currentSeconds / durationSeconds
+                self.sliderValue = currentSeconds
             }
         })
     }
     
     private func updatePlayer(sliderVal: Float) {
-        let newTime = CMTimeMakeWithSeconds(Double(sliderVal) * (player!.currentItem?.duration.seconds)!, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        let newTime = CMTimeMakeWithSeconds(Double(sliderVal), preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         player!.currentItem?.seek(to: newTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: nil)
     }
     
     var body: some View {
-        if movie != nil {
-            VideoPlayer(player: player)
-                .scaledToFit()
-                .frame(width: 300, height: 300)
-        } else {
-            Text("No video selected")
-        }
-        
-        VideoPickerView(movie: $movie)
-            .onChange(of: movie?.movieChanged) { changed in
-                if player == nil {
-                    player = AVPlayer()
+        GeometryReader { proxy in
+            VStack {
+                if movie != nil {
+                    VideoPlayerView(player: $player)
+                        .frame(width: proxy.size.width * 0.75, height: proxy.size.width * 0.75)
+                } else {
+                    Text("No video selected")
                 }
-                player?.replaceCurrentItem(with: AVPlayerItem(url: movie!.url))
-                movie?.movieChanged = false
-                if (timeObserver == nil) { addTimeObserver() }
-            }
-        
-        if (movie != nil) {
-            AudioSlider(value: $sliderValue, dragging: $sliderIsBeingDragged)
-                .onChange(of: sliderValue) { newValue in
-                    if (sliderIsBeingDragged) {
-                        updatePlayer(sliderVal: newValue)
+                
+                VideoPickerView(movie: $movie)
+                    .onChange(of: movie?.movieChanged) { changed in
+                        Task {
+                            if player == nil {
+                                player = AVPlayer()
+                            }
+                            player?.replaceCurrentItem(with: AVPlayerItem(url: movie!.url))
+                            
+                            if let loadedDuration = try await player?.currentItem?.asset.load(.duration).seconds {
+                                duration = loadedDuration
+                            }
+                            
+                            movie?.movieChanged = false
+                            if (timeObserver == nil) { addTimeObserver() }
+                        }
                     }
+                
+                if (movie != nil && duration > 0) {
+                    AudioSlider(value: $sliderValue, durationInSeconds: $duration, dragging: $sliderIsBeingDragged)
+                        .onChange(of: sliderValue) { newValue in
+                            if (sliderIsBeingDragged) {
+                                updatePlayer(sliderVal: newValue)
+                            }
+                        }
+                    
                 }
+            }
+            .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height)
         }
     }
 }
