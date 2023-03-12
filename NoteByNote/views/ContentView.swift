@@ -8,23 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var notes: String = ""
-    @FocusState private var textEditorShouldFocus: Bool
     
     var body: some View {
         GeometryReader { proxy in
             VStack {
                 VideoView()
-                NotesView(notes: $notes, editorShouldFocus: $textEditorShouldFocus)
-                .frame(height: proxy.size.height * 0.33)
+                    .frame(height: proxy.size.height * 0.5)
+                PickerView()
             }
             .padding()
             .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height)
         }
         .contentShape(Rectangle())
-        .onTapGesture {
-            textEditorShouldFocus = false
-        }
     }
 }
 

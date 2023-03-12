@@ -71,7 +71,6 @@ struct VideoView: View {
                                 updatePlayer(sliderVal: newValue)
                             }
                         }
-                    
                 }
             }
             .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height)

@@ -15,6 +15,7 @@ struct VideoPickerView: View {
     var body: some View {
         PhotosPicker(selection: $videoSelection,
                      matching: .videos,
+                     preferredItemEncoding: .current,
                      photoLibrary: .shared()) {
             Text("Select Video")
         }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct NotesView: View {
-    @Binding var notes: String
-    @FocusState.Binding var editorShouldFocus: Bool
+    @State private var notes: String = ""
+    @FocusState private var editorShouldFocus: Bool
     
     var body: some View {
         GeometryReader { proxy in
@@ -20,6 +20,13 @@ struct NotesView: View {
                     .border(Color.black)
                     .onTapGesture {
                         editorShouldFocus = true
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .keyboard) {
+                            Button("Done") {
+                                editorShouldFocus = false
+                            }
+                        }
                     }
             }
         }
