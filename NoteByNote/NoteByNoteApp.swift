@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct NoteByNoteApp: App {
+    @StateObject private var videoInfo = VideoInfo()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(videoInfo)
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct VideoPickerView: View {
-    @Binding var movie: Movie?
+    @EnvironmentObject var videoInfo: VideoInfo
     @State private var videoSelection: PhotosPickerItem?
     
     var body: some View {
@@ -22,7 +22,7 @@ struct VideoPickerView: View {
         .onChange(of: videoSelection) { newItem in
             Task {
                 if let video = try? await newItem?.loadTransferable(type: Movie.self) {
-                    movie = video
+                    videoInfo.video = video
                 }
             }
         }
@@ -31,6 +31,6 @@ struct VideoPickerView: View {
 
 struct VideoPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        VideoPickerView(movie: .constant(Movie(url: URL(string: "file:///Users/fgao/Downloads/IMG_0909.mov")!, movieChanged: true)))
+        VideoPickerView()
     }
 }

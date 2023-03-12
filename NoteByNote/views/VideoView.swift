@@ -10,13 +10,11 @@ import PhotosUI
 import AVKit
 
 struct VideoView: View {
-    @State private var movie: Movie?
-    
-    @State private var sliderValue: Float = 0.0
+    @EnvironmentObject var videoInfo: VideoInfo
+        
     @State private var sliderIsBeingDragged: Bool = false
     
     @State private var player: AVPlayer?
-    @State private var playerTime: CMTime?
     @State private var duration: Double = 0
     
     @State private var timeObserver: Any?
@@ -25,51 +23,53 @@ struct VideoView: View {
         let interval = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player!.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { time in
             // only update the slider value if is not currently being dragged
-            if !sliderIsBeingDragged {
-                let currentSeconds = Float(CMTimeGetSeconds(time))
-                self.sliderValue = currentSeconds
+            if !sliderIsBeingDragged && !videoInfo.timeStampSelected {
+                let currentSeconds = CMTimeGetSeconds(time)
+                videoInfo.timestampInSeconds = currentSeconds
             }
         })
     }
     
-    private func updatePlayer(sliderVal: Float) {
-        let newTime = CMTimeMakeWithSeconds(Double(sliderVal), preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+    private func updatePlayer() {
+        let newTime = CMTimeMakeWithSeconds(videoInfo.timestampInSeconds, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         player!.currentItem?.seek(to: newTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: nil)
     }
     
     var body: some View {
         GeometryReader { proxy in
             VStack {
-                if movie != nil {
+                if videoInfo.video != nil {
                     VideoPlayerView(player: $player)
                         .frame(width: proxy.size.width * 0.75, height: proxy.size.width * 0.75)
                 } else {
                     Text("No video selected")
                 }
                 
-                VideoPickerView(movie: $movie)
-                    .onChange(of: movie?.movieChanged) { changed in
+                VideoPickerView()
+                    .onChange(of: videoInfo.video?.movieChanged) { changed in
                         Task {
                             if player == nil {
                                 player = AVPlayer()
                             }
-                            player?.replaceCurrentItem(with: AVPlayerItem(url: movie!.url))
+                            player?.replaceCurrentItem(with: AVPlayerItem(url: videoInfo.video!.url))
                             
                             if let loadedDuration = try await player?.currentItem?.asset.load(.duration).seconds {
                                 duration = loadedDuration
                             }
                             
-                            movie?.movieChanged = false
+                            videoInfo.video?.movieChanged = false
                             if (timeObserver == nil) { addTimeObserver() }
                         }
                     }
                 
-                if (movie != nil && duration > 0) {
-                    AudioSlider(value: $sliderValue, durationInSeconds: $duration, dragging: $sliderIsBeingDragged)
-                        .onChange(of: sliderValue) { newValue in
-                            if (sliderIsBeingDragged) {
-                                updatePlayer(sliderVal: newValue)
-                            }
+                if (videoInfo.video != nil && duration > 0) {
+                    AudioSlider(value: $videoInfo.timestampInSeconds, durationInSeconds: $duration, dragging: $sliderIsBeingDragged)
+                        .onChange(of: videoInfo.timestampInSeconds) { newValue in
+                            if (sliderIsBeingDragged || videoInfo.timeStampSelected) {
+                                videoInfo.timestampInSeconds = Double(newValue)
+                                if videoInfo.timeStampSelected { videoInfo.timeStampSelected = false }
+                                updatePlayer()
+                            
                         }
                 }
             }

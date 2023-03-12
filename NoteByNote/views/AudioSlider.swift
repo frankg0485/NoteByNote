@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AudioSlider: View {
-    @Binding var value: Float
+    @Binding var value: Double
     @Binding var durationInSeconds: Double
     @Binding var dragging: Bool
     
@@ -19,7 +19,7 @@ struct AudioSlider: View {
                 Spacer()
                 Text(String.init(format: "%02.0f:%02.0f", floor(durationInSeconds / 60), floor (durationInSeconds.truncatingRemainder(dividingBy: 60))))
             }
-            Slider(value: $value, in: 0...Float(durationInSeconds)) { isDragging in
+            Slider(value: $value, in: 0...durationInSeconds) { isDragging in
                 dragging = isDragging
             }
         }

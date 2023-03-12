@@ -9,10 +9,10 @@ import SwiftUI
 
 struct Section {
     var name: String
-    var startTimeInSeconds: Float
-    var endTimeInSeconds: Float
+    var startTimeInSeconds: Double
+    var endTimeInSeconds: Double
     
-    init(name: String, startTimeInSeconds: Float, endTimeInSeconds: Float) {
+    init(name: String, startTimeInSeconds: Double, endTimeInSeconds: Double) {
         guard startTimeInSeconds <= endTimeInSeconds else {
             fatalError("section start time can't be larger than the end time")
         }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SectionView: View {
+    @EnvironmentObject var videoInfo: VideoInfo
+    
     private var sections = [
         Section(name: "Introduction", startTimeInSeconds: 232, endTimeInSeconds: 339),
         Section(name: "Development", startTimeInSeconds: 453, endTimeInSeconds: 557),
@@ -33,12 +35,14 @@ struct SectionView: View {
                         Text(section.name)
                         Spacer()
                         Button(action: {
-                            
+                            videoInfo.timeStampSelected = true
+                            videoInfo.timestampInSeconds = section.startTimeInSeconds
                         }) {
                             Text(String.init(format: "%02.0f:%02.0f", floor(section.startTimeInSeconds / 60), floor(section.startTimeInSeconds.truncatingRemainder(dividingBy: 60))))
                         }
                         Button(action: {
-                            
+                            videoInfo.timeStampSelected = true
+                            videoInfo.timestampInSeconds = section.endTimeInSeconds
                         }) {
                             Text(String.init(format: "%02.0f:%02.0f", floor(section.endTimeInSeconds / 60), floor (section.endTimeInSeconds.truncatingRemainder(dividingBy: 60))))
                         }
