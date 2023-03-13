@@ -11,14 +11,14 @@ import AVKit
 
 struct VideoView: View {
     @EnvironmentObject var videoInfo: VideoInfo
-        
+    
     @State private var sliderIsBeingDragged: Bool = false
     
     @State private var player: AVPlayer?
     @State private var duration: Double = 0
     
     @State private var timeObserver: Any?
-
+    
     private func addTimeObserver() {
         let interval = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserver = player!.addPeriodicTimeObserver(forInterval: interval, queue: .main, using: { time in
@@ -65,12 +65,14 @@ struct VideoView: View {
                 if (videoInfo.video != nil && duration > 0) {
                     AudioSlider(value: $videoInfo.timestampInSeconds, durationInSeconds: $duration, dragging: $sliderIsBeingDragged)
                         .onChange(of: videoInfo.timestampInSeconds) { newValue in
+                            //either slider dragged or timestamp was selected(in section or notes views)
                             if (sliderIsBeingDragged || videoInfo.timeStampSelected) {
                                 videoInfo.timestampInSeconds = Double(newValue)
                                 if videoInfo.timeStampSelected { videoInfo.timeStampSelected = false }
                                 updatePlayer()
-                            
+                            }
                         }
+                    PickerView()
                 }
             }
             .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height)

@@ -3,13 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "closure #1 in closure #2 in VideoPickerView.body.getter:VideoPickerView.swift">
+         contextName = "ContentViewController.viewDidLoad():ContentViewController.swift">
       </ContextState>
       <ContextState
          contextName = "closure #2 in static Movie.transferRepresentation.getter:Movie.swift">
          <PersistentStrings>
             <PersistentString
                value = "copy.absoluteString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #2 in VideoPickerView.body.getter:VideoPickerView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AlwaysPopoverModifier.presentPopover():AlwaysPopoverModifier.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "popover.sourceRect">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

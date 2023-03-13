@@ -13,8 +13,6 @@ struct ContentView: View {
         GeometryReader { proxy in
             VStack {
                 VideoView()
-                    .frame(height: proxy.size.height * 0.5)
-                PickerView()
             }
             .padding()
             .frame(maxWidth: proxy.size.width, maxHeight: proxy.size.height)

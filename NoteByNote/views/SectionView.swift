@@ -10,49 +10,100 @@ import SwiftUI
 struct SectionView: View {
     @EnvironmentObject var videoInfo: VideoInfo
     
-    private var sections = [
-        Section(name: "Introduction", startTimeInSeconds: 232, endTimeInSeconds: 339),
-        Section(name: "Development", startTimeInSeconds: 453, endTimeInSeconds: 557),
-        Section(name: "Recapitulation", startTimeInSeconds: 674, endTimeInSeconds: 789)
-    ]
+    @State private var isCreatingSection: Bool = false
+    @State private var startTimeChosen: Bool = false
+    @State private var presentNewSectionPopup: Bool = false
+    
+    //placeholder for when a new section is being created
+    @State private var newSection: Section = Section(name: "", startTimeInSeconds: 0, endTimeInSeconds: 0)
+    @State private var sections: [Section] = []
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                
-                Button(action: {
-                    // handle button tap
-                }) {
-                    Image(systemName: "plus")
-                }
-                .frame(alignment: .leading)
-            }
-            .padding()
-            ScrollView {
-                ForEach(sections, id: \.name) {section in
-                    HStack {
-                        Text(section.name)
-                        Spacer()
+        GeometryReader { proxy in
+            VStack {
+                HStack {
+                    if isCreatingSection {
+                        Text(String.init(format: "%02.0f:%02.0f", floor(videoInfo.timestampInSeconds / 60), floor(videoInfo.timestampInSeconds.truncatingRemainder(dividingBy: 60))))
                         Button(action: {
-                            videoInfo.timeStampSelected = true
-                            videoInfo.timestampInSeconds = section.startTimeInSeconds
+                            if !startTimeChosen {
+                                newSection.startTimeInSeconds = videoInfo.timestampInSeconds
+                            } else {
+                                newSection.endTimeInSeconds = videoInfo.timestampInSeconds
+                                presentNewSectionPopup = true
+                                isCreatingSection = false
+                            }
+                            startTimeChosen.toggle()
                         }) {
-                            Text(String.init(format: "%02.0f:%02.0f", floor(section.startTimeInSeconds / 60), floor(section.startTimeInSeconds.truncatingRemainder(dividingBy: 60))))
+                            Image(systemName: "checkmark")
                         }
-                        Button(action: {
-                            videoInfo.timeStampSelected = true
-                            videoInfo.timestampInSeconds = section.endTimeInSeconds
-                        }) {
-                            Text(String.init(format: "%02.0f:%02.0f", floor(section.endTimeInSeconds / 60), floor (section.endTimeInSeconds.truncatingRemainder(dividingBy: 60))))
+                        .alwaysPopover(isPresented: $presentNewSectionPopup) {
+                            NewSectionPopupView(newSection: $newSection, show: $presentNewSectionPopup)
                         }
                         
+                        
+                        Spacer()
+                        
+                        if !startTimeChosen {
+                            Text("Choose start time")
+                        } else {
+                            Text("Choose end time")
+                        }
                     }
-                    .padding()
+                    
+                    Spacer()
+                        .onChange(of: presentNewSectionPopup) { present in
+                            if !present && !newSection.name.isEmpty {
+                                //add the section to the array
+                                sections.append(newSection)
+                                
+                                //clear the newSection variable
+                                newSection = Section(name: "", startTimeInSeconds: 0, endTimeInSeconds: 0)
+                            }
+                        }
+                    
+                    Button(action: {
+                        isCreatingSection.toggle()
+                        if !isCreatingSection { startTimeChosen = false }
+                    }) {
+                        if !isCreatingSection {
+                            Image(systemName: "plus")
+                        } else {
+                            Text("Cancel")
+                        }
+                    }
+                }
+                .padding()
+                
+                if !sections.isEmpty {
+                    ScrollView {
+                        ForEach(sections, id: \.name) {section in
+                            HStack {
+                                Text(section.name)
+                                Spacer()
+                                Button(action: {
+                                    videoInfo.timeStampSelected = true
+                                    videoInfo.timestampInSeconds = section.startTimeInSeconds
+                                }) {
+                                    Text(String.init(format: "%02.0f:%02.0f", floor(section.startTimeInSeconds / 60), floor(section.startTimeInSeconds.truncatingRemainder(dividingBy: 60))))
+                                }
+                                Button(action: {
+                                    videoInfo.timeStampSelected = true
+                                    videoInfo.timestampInSeconds = section.endTimeInSeconds
+                                }) {
+                                    Text(String.init(format: "%02.0f:%02.0f", floor(section.endTimeInSeconds / 60), floor (section.endTimeInSeconds.truncatingRemainder(dividingBy: 60))))
+                                }
+                                
+                            }
+                            .padding()
+                        }
+                    }
+                } else {
+                    Text("No Sections")
+                        .padding()
                 }
             }
+            .border(.black)
         }
-        .border(.black)
     }
 }
 
