@@ -54,7 +54,7 @@ struct NewSectionPopupView: View {
         .frame(width: UIScreen.main.bounds.size.width * 0.75)
         .overlay(
             GeometryReader { proxy in
-                HStack {} // just an empty container to triggers the onAppear
+                HStack {} // just an empty container to trigger the onAppear
                     .onAppear {
                         size = proxy.size
                     }

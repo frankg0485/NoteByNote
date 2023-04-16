@@ -18,6 +18,7 @@
 		C2AE731629BEC8660036E5E4 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE731229BEC8660036E5E4 /* UIView+Extension.swift */; };
 		C2AE731729BEC8660036E5E4 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE731329BEC8660036E5E4 /* ContentViewController.swift */; };
 		C2AE731829BEC8660036E5E4 /* AlwaysPopoverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE731429BEC8660036E5E4 /* AlwaysPopoverModifier.swift */; };
+		C2AE731A29BF73DD0036E5E4 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE731929BF73DD0036E5E4 /* Double+Extension.swift */; };
 		C2B0061929BAEF2800517E8D /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0061829BAEF2800517E8D /* NotesView.swift */; };
 		C2E78BA629B30349004E6751 /* NoteByNoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */; };
 		C2E78BA829B30349004E6751 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA729B30349004E6751 /* ContentView.swift */; };
@@ -40,6 +41,7 @@
 		C2AE731229BEC8660036E5E4 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C2AE731329BEC8660036E5E4 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		C2AE731429BEC8660036E5E4 /* AlwaysPopoverModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlwaysPopoverModifier.swift; sourceTree = "<group>"; };
+		C2AE731929BF73DD0036E5E4 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		C2B0061829BAEF2800517E8D /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		C2E78BA229B30349004E6751 /* NoteByNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteByNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteByNoteApp.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				C2AE731329BEC8660036E5E4 /* ContentViewController.swift */,
 				C2AE731229BEC8660036E5E4 /* UIView+Extension.swift */,
 				C2AE731129BEC8660036E5E4 /* View+Modifiers.swift */,
+				C2AE731929BF73DD0036E5E4 /* Double+Extension.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				C2E78BB429B303CD004E6751 /* VideoView.swift in Sources */,
 				C2E78BA829B30349004E6751 /* ContentView.swift in Sources */,
 				C2E78BB629B30F25004E6751 /* Movie.swift in Sources */,
+				C2AE731A29BF73DD0036E5E4 /* Double+Extension.swift in Sources */,
 				C2AE731829BEC8660036E5E4 /* AlwaysPopoverModifier.swift in Sources */,
 				C2E78BB829B313F1004E6751 /* AudioSlider.swift in Sources */,
 				C21FFC8A29BD89F800026F91 /* VideoInfo.swift in Sources */,

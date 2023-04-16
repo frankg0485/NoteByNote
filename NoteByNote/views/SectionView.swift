@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SectionView: View {
     @EnvironmentObject var videoInfo: VideoInfo
+    @Binding var sections: [Section]
     
     @State private var isCreatingSection: Bool = false
     @State private var startTimeChosen: Bool = false
@@ -16,7 +17,6 @@ struct SectionView: View {
     
     //placeholder for when a new section is being created
     @State private var newSection: Section = Section(name: "", startTimeInSeconds: 0, endTimeInSeconds: 0)
-    @State private var sections: [Section] = []
     
     var body: some View {
         GeometryReader { proxy in
@@ -109,6 +109,6 @@ struct SectionView: View {
 
 struct SectionView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView()
+        SectionView(sections: .constant([]))
     }
 }

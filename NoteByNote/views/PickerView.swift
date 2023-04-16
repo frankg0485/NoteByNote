@@ -14,6 +14,7 @@ enum ToolSelection : String, CaseIterable {
 
 struct PickerView: View {
     @State private var segmentationSelection : ToolSelection = .sections
+    @State private var sections : [Section] = []
     
     var body: some View {
         GeometryReader { proxy in
@@ -26,7 +27,7 @@ struct PickerView: View {
                     .padding()
                 switch segmentationSelection {
                 case .sections:
-                    SectionView()
+                    SectionView(sections: $sections)
                         .frame(minHeight: proxy.size.height * 0.75)
                 case .notes:
                     NotesView()

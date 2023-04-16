@@ -15,7 +15,7 @@ struct AudioSlider: View {
     var body: some View {
         VStack {
             HStack {
-                Text(String.init(format: "%02.0f:%02.0f", floor(value / 60), floor(value.truncatingRemainder(dividingBy: 60))))
+                Text(value.secondsToMMSSstr())
                 Spacer()
                 Text(String.init(format: "%02.0f:%02.0f", floor(durationInSeconds / 60), floor (durationInSeconds.truncatingRemainder(dividingBy: 60))))
             }
