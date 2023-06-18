@@ -22,6 +22,10 @@ struct ProjectList: View {
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ProjectListNavBar()
+            }
         }
     }
 }
