@@ -19,8 +19,12 @@ struct NewSectionPopupView: View {
             Text("New Section")
                 .bold()
                 .padding()
-            
-            TextField("name", text: $newSection.name)
+
+            TextField("name", text: Binding(get: {
+                newSection.getName()
+            }, set: { name in
+                newSection.setName(name)
+            }))
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(Color.black, lineWidth: 2)
@@ -32,7 +36,7 @@ struct NewSectionPopupView: View {
                 Spacer()
                     .frame(maxWidth: size.width)
                 Button(action: {
-                    newSection.name = ""
+                    newSection.setName("")
                     presentationMode.wrappedValue.dismiss()
                     show = false
                 }) {

@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 import AVKit
 
+//TODO: move some views to ProjectView
 struct VideoView: View {
     @EnvironmentObject var videoInfo: VideoInfo
     
@@ -46,18 +47,18 @@ struct VideoView: View {
                 }
                 
                 VideoPickerView()
-                    .onChange(of: videoInfo.video?.movieChanged) { changed in
+                    .onChange(of: videoInfo.video) { changed in
                         Task {
                             if player == nil {
                                 player = AVPlayer()
                             }
-                            player?.replaceCurrentItem(with: AVPlayerItem(url: videoInfo.video!.url))
+                            //player?.replaceCurrentItem(with: AVPlayerItem(url: videoInfo.video!.url))
                             
                             if let loadedDuration = try await player?.currentItem?.asset.load(.duration).seconds {
                                 duration = loadedDuration
                             }
                             
-                            videoInfo.video?.movieChanged = false
+                            //videoInfo.video?.movieChanged = false
                             if (timeObserver == nil) { addTimeObserver() }
                         }
                     }

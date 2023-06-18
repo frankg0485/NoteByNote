@@ -21,7 +21,7 @@ struct VideoPickerView: View {
         }
         .onChange(of: videoSelection) { newItem in
             Task {
-                if let video = try? await newItem?.loadTransferable(type: Movie.self) {
+                if let video = try? await newItem?.loadTransferable(type: Video.self) {
                     videoInfo.video = video
                 }
             }

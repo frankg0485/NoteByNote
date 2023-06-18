@@ -20,12 +20,16 @@
 		C2AE731829BEC8660036E5E4 /* AlwaysPopoverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE731429BEC8660036E5E4 /* AlwaysPopoverModifier.swift */; };
 		C2AE731A29BF73DD0036E5E4 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE731929BF73DD0036E5E4 /* Double+Extension.swift */; };
 		C2B0061929BAEF2800517E8D /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0061829BAEF2800517E8D /* NotesView.swift */; };
+		C2BABB412A3E8C3400696CE0 /* NBNTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BABB402A3E8C3400696CE0 /* NBNTabBar.swift */; };
+		C2BABB432A3E92D300696CE0 /* ProjectList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BABB422A3E92D300696CE0 /* ProjectList.swift */; };
+		C2D15B652A22789A00AF024F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D15B642A22789A00AF024F /* Project.swift */; };
+		C2D15B672A227A6200AF024F /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D15B662A227A6200AF024F /* Note.swift */; };
 		C2E78BA629B30349004E6751 /* NoteByNoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */; };
-		C2E78BA829B30349004E6751 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA729B30349004E6751 /* ContentView.swift */; };
+		C2E78BA829B30349004E6751 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BA729B30349004E6751 /* ProjectView.swift */; };
 		C2E78BAA29B3034A004E6751 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E78BA929B3034A004E6751 /* Assets.xcassets */; };
 		C2E78BAD29B3034A004E6751 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E78BAC29B3034A004E6751 /* Preview Assets.xcassets */; };
 		C2E78BB429B303CD004E6751 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BB329B303CD004E6751 /* VideoView.swift */; };
-		C2E78BB629B30F25004E6751 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BB529B30F25004E6751 /* Movie.swift */; };
+		C2E78BB629B30F25004E6751 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BB529B30F25004E6751 /* Video.swift */; };
 		C2E78BB829B313F1004E6751 /* AudioSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E78BB729B313F1004E6751 /* AudioSlider.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,13 +47,17 @@
 		C2AE731429BEC8660036E5E4 /* AlwaysPopoverModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlwaysPopoverModifier.swift; sourceTree = "<group>"; };
 		C2AE731929BF73DD0036E5E4 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		C2B0061829BAEF2800517E8D /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		C2BABB402A3E8C3400696CE0 /* NBNTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBNTabBar.swift; sourceTree = "<group>"; };
+		C2BABB422A3E92D300696CE0 /* ProjectList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectList.swift; sourceTree = "<group>"; };
+		C2D15B642A22789A00AF024F /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		C2D15B662A227A6200AF024F /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		C2E78BA229B30349004E6751 /* NoteByNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteByNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E78BA529B30349004E6751 /* NoteByNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteByNoteApp.swift; sourceTree = "<group>"; };
-		C2E78BA729B30349004E6751 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C2E78BA729B30349004E6751 /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		C2E78BA929B3034A004E6751 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2E78BAC29B3034A004E6751 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C2E78BB329B303CD004E6751 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
-		C2E78BB529B30F25004E6751 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		C2E78BB529B30F25004E6751 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		C2E78BB729B313F1004E6751 /* AudioSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,15 +75,9 @@
 		C203D73D29B3FC2300CF7DD5 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				C2E78BA729B30349004E6751 /* ContentView.swift */,
-				C2E78BB329B303CD004E6751 /* VideoView.swift */,
-				C203D73F29B3FCB100CF7DD5 /* VideoPickerView.swift */,
-				C227FE7029BC47B000EEF046 /* VideoPlayerView.swift */,
-				C2E78BB729B313F1004E6751 /* AudioSlider.swift */,
-				C2B0061829BAEF2800517E8D /* NotesView.swift */,
-				C21FFC8329BD7A0400026F91 /* PickerView.swift */,
-				C21FFC8529BD7A0C00026F91 /* SectionView.swift */,
-				C25D074329BDA67700225E5D /* NewSectionPopupView.swift */,
+				C2BABB402A3E8C3400696CE0 /* NBNTabBar.swift */,
+				C2BABB422A3E92D300696CE0 /* ProjectList.swift */,
+				C2BABB3F2A3E8C0800696CE0 /* project */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -83,9 +85,11 @@
 		C203D73E29B3FC2900CF7DD5 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				C2E78BB529B30F25004E6751 /* Movie.swift */,
+				C2E78BB529B30F25004E6751 /* Video.swift */,
 				C21FFC8729BD7EDC00026F91 /* Section.swift */,
 				C21FFC8929BD89F800026F91 /* VideoInfo.swift */,
+				C2D15B642A22789A00AF024F /* Project.swift */,
+				C2D15B662A227A6200AF024F /* Note.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -100,6 +104,22 @@
 				C2AE731929BF73DD0036E5E4 /* Double+Extension.swift */,
 			);
 			path = helpers;
+			sourceTree = "<group>";
+		};
+		C2BABB3F2A3E8C0800696CE0 /* project */ = {
+			isa = PBXGroup;
+			children = (
+				C21FFC8529BD7A0C00026F91 /* SectionView.swift */,
+				C25D074329BDA67700225E5D /* NewSectionPopupView.swift */,
+				C2E78BA729B30349004E6751 /* ProjectView.swift */,
+				C2E78BB329B303CD004E6751 /* VideoView.swift */,
+				C203D73F29B3FCB100CF7DD5 /* VideoPickerView.swift */,
+				C227FE7029BC47B000EEF046 /* VideoPlayerView.swift */,
+				C2E78BB729B313F1004E6751 /* AudioSlider.swift */,
+				C2B0061829BAEF2800517E8D /* NotesView.swift */,
+				C21FFC8329BD7A0400026F91 /* PickerView.swift */,
+			);
+			path = project;
 			sourceTree = "<group>";
 		};
 		C2E78B9929B30349004E6751 = {
@@ -213,16 +233,20 @@
 				C203D74029B3FCB100CF7DD5 /* VideoPickerView.swift in Sources */,
 				C2AE731729BEC8660036E5E4 /* ContentViewController.swift in Sources */,
 				C2AE731629BEC8660036E5E4 /* UIView+Extension.swift in Sources */,
+				C2BABB412A3E8C3400696CE0 /* NBNTabBar.swift in Sources */,
 				C21FFC8629BD7A0C00026F91 /* SectionView.swift in Sources */,
 				C21FFC8429BD7A0400026F91 /* PickerView.swift in Sources */,
+				C2D15B652A22789A00AF024F /* Project.swift in Sources */,
 				C21FFC8829BD7EDC00026F91 /* Section.swift in Sources */,
 				C2E78BB429B303CD004E6751 /* VideoView.swift in Sources */,
-				C2E78BA829B30349004E6751 /* ContentView.swift in Sources */,
-				C2E78BB629B30F25004E6751 /* Movie.swift in Sources */,
+				C2E78BA829B30349004E6751 /* ProjectView.swift in Sources */,
+				C2E78BB629B30F25004E6751 /* Video.swift in Sources */,
 				C2AE731A29BF73DD0036E5E4 /* Double+Extension.swift in Sources */,
 				C2AE731829BEC8660036E5E4 /* AlwaysPopoverModifier.swift in Sources */,
 				C2E78BB829B313F1004E6751 /* AudioSlider.swift in Sources */,
 				C21FFC8A29BD89F800026F91 /* VideoInfo.swift in Sources */,
+				C2BABB432A3E92D300696CE0 /* ProjectList.swift in Sources */,
+				C2D15B672A227A6200AF024F /* Note.swift in Sources */,
 				C2E78BA629B30349004E6751 /* NoteByNoteApp.swift in Sources */,
 				C227FE7129BC47B000EEF046 /* VideoPlayerView.swift in Sources */,
 				C2AE731529BEC8660036E5E4 /* View+Modifiers.swift in Sources */,

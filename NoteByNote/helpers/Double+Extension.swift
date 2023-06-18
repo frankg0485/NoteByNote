@@ -11,4 +11,12 @@ extension Double {
     func secondsToMMSSstr() -> String {
         return String.init(format: "%02.0f:%02.0f", floor(self / 60), floor (self.truncatingRemainder(dividingBy: 60)))
     }
+    
+    func secondsToMinutes() -> Double {
+        return floor(self / 60)
+    }
+    
+    func msToSeconds() -> Double {
+        return self * 1000
+    }
 }

@@ -13,7 +13,7 @@ struct NoteByNoteApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NBNTabBar()
                 .environmentObject(videoInfo)
         }
     }

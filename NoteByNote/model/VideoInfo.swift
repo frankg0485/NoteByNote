@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class VideoInfo: ObservableObject {
-    @Published var video: Movie?
+    @Published var video: Video?
     @Published var timestampInSeconds: Double = 0.0
     var timeStampSelected = false
 }

@@ -16,7 +16,7 @@ struct SectionView: View {
     @State private var presentNewSectionPopup: Bool = false
     
     //placeholder for when a new section is being created
-    @State private var newSection: Section = Section(name: "", startTimeInSeconds: 0, endTimeInSeconds: 0)
+    @State private var newSection: Section = Section(name: "", startTime: 0, endTime: 0)
     
     var body: some View {
         GeometryReader { proxy in
@@ -26,9 +26,9 @@ struct SectionView: View {
                         Text(String.init(format: "%02.0f:%02.0f", floor(videoInfo.timestampInSeconds / 60), floor(videoInfo.timestampInSeconds.truncatingRemainder(dividingBy: 60))))
                         Button(action: {
                             if !startTimeChosen {
-                                newSection.startTimeInSeconds = videoInfo.timestampInSeconds
+                                newSection.setStartTime(videoInfo.timestampInSeconds)
                             } else {
-                                newSection.endTimeInSeconds = videoInfo.timestampInSeconds
+                                newSection.setEndTime(videoInfo.timestampInSeconds)
                                 presentNewSectionPopup = true
                                 isCreatingSection = false
                             }
@@ -52,12 +52,12 @@ struct SectionView: View {
                     
                     Spacer()
                         .onChange(of: presentNewSectionPopup) { present in
-                            if !present && !newSection.name.isEmpty {
+                            if !present && !newSection.getName().isEmpty {
                                 //add the section to the array
                                 sections.append(newSection)
                                 
                                 //clear the newSection variable
-                                newSection = Section(name: "", startTimeInSeconds: 0, endTimeInSeconds: 0)
+                                newSection = Section(name: "", startTime: 0, endTime: 0)
                             }
                         }
                     
@@ -76,21 +76,21 @@ struct SectionView: View {
                 
                 if !sections.isEmpty {
                     ScrollView {
-                        ForEach(sections, id: \.name) {section in
+                        ForEach(sections, id: \.self.id) {section in
                             HStack {
-                                Text(section.name)
+                                Text(section.getName())
                                 Spacer()
                                 Button(action: {
                                     videoInfo.timeStampSelected = true
-                                    videoInfo.timestampInSeconds = section.startTimeInSeconds
+                                    videoInfo.timestampInSeconds = section.getStartTime()
                                 }) {
-                                    Text(String.init(format: "%02.0f:%02.0f", floor(section.startTimeInSeconds / 60), floor(section.startTimeInSeconds.truncatingRemainder(dividingBy: 60))))
+                                    //Text(String.init(format: "%02.0f:%02.0f", floor(section.startTimeInSeconds / 60), floor(section.startTimeInSeconds.truncatingRemainder(dividingBy: 60))))
                                 }
                                 Button(action: {
                                     videoInfo.timeStampSelected = true
-                                    videoInfo.timestampInSeconds = section.endTimeInSeconds
+                                    videoInfo.timestampInSeconds = section.getEndTime()
                                 }) {
-                                    Text(String.init(format: "%02.0f:%02.0f", floor(section.endTimeInSeconds / 60), floor (section.endTimeInSeconds.truncatingRemainder(dividingBy: 60))))
+                                    //Text(String.init(format: "%02.0f:%02.0f", floor(section.endTimeInSeconds / 60), floor (section.endTimeInSeconds.truncatingRemainder(dividingBy: 60))))
                                 }
                                 
                             }

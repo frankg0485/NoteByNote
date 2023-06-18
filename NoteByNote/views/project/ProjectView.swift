@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct ProjectView: View {
+
     var body: some View {
         GeometryReader { proxy in
             VStack {
@@ -23,6 +23,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ProjectView()
     }
 }
